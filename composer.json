@@ -1,0 +1,29 @@
+{
+    "name": "mateuszbieniek/ibexa-dxp-redis-tools",
+    "description": "Tools for improving the experience of using Redis as a cache in Ibexa DXP v3.3+",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MateuszBieniek\\IbexaDxpRedisTools\\": "src/lib/",
+            "MateuszBieniek\\IbexaDxpRedisToolsBundle\\": "src/bundle/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mateusz Bieniek",
+            "email": "mateusz@bieniek.dev"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ezsystems/ezplatform-kernel": "^1.3",
+        "ibexa/code-style": "^1.0",
+        "predis/predis": "^2.0",
+        "ext-redis": "*"
+    },
+    "scripts": {
+        "check-cs": "@fix-cs --dry-run",
+        "fix-cs": "php-cs-fixer fix -v --show-progress=dots"
+    }
+}
