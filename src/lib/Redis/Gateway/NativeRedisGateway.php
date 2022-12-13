@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway;
 
-use MateuszBieniek\IbexaDxpRedisTools\Redis\Info;
-use MateuszBieniek\IbexaDxpRedisTools\Redis\Key;
+use MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info;
+use MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info\Memory;
+use MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info\Stats;
+use MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Key;
 
 class NativeRedisGateway implements RedisGatewayInterface
 {
@@ -21,11 +23,32 @@ class NativeRedisGateway implements RedisGatewayInterface
         $this->client = $client;
     }
 
+    /**
+     * @throws \RedisException
+     */
     public function getInfo(): Info
     {
         $infoData = $this->client->info();
+        if (!isset($infoData['db0'])) {
+            throw new \RedisException();
+        }
 
-        return new Info((int) $infoData['maxmemory'], (int) $infoData['used_memory'], $infoData['maxmemory_policy']);
+        $keyspace = $this->processKeyspace($infoData['db0']);
+
+        return new Info(
+            new Memory(
+                (int) $infoData['maxmemory'],
+                (int) $infoData['used_memory'],
+                $infoData['maxmemory_policy']
+            ),
+            new Stats(
+                (int) $infoData['uptime_in_days'],
+                (int) $keyspace['keys'],
+                (int) $keyspace['expires'],
+                (int) $infoData['expired_keys'],
+                (int) $infoData['evicted_keys']
+            )
+        );
     }
 
     /**
@@ -36,7 +59,7 @@ class NativeRedisGateway implements RedisGatewayInterface
         $allKeyNames = $this->client->keys('*');
 
         foreach ($allKeyNames as $keyName) {
-            if ($this->redis->ttl($keyName) === -1) {
+            if ($this->client->ttl($keyName) === -1) {
                 yield new Key($keyName, -1);
             }
         }
@@ -62,5 +85,16 @@ class NativeRedisGateway implements RedisGatewayInterface
         }
 
         return $memory;
+    }
+
+    private function processKeyspace(string $keyspaceData): array
+    {
+        $keyspace = [];
+        array_map(static function (string $valueString) use (&$keyspace) {
+            list($key, $value) = explode('=', $valueString);
+            $keyspace[$key] = (int) $value;
+        }, explode(',', $keyspaceData));
+
+        return $keyspace;
     }
 }

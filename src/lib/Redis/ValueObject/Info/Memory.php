@@ -6,10 +6,16 @@
  */
 declare(strict_types=1);
 
-namespace MateuszBieniek\IbexaDxpRedisTools\Redis;
+namespace MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info;
 
-class Info
+final class Memory
 {
+    public const SUPPORTED_MAXMEMORY_POLICIES = [
+        'volatile-lru',
+        'volatile-lfu',
+        'volatile-ttl',
+    ];
+
     /** @var int */
     private $maxMemory;
 
@@ -19,14 +25,11 @@ class Info
     /** @var string */
     private $maxMemoryPolicy;
 
-    public const SUPPORTED_MAXMEMORY_POLICIES = [
-        'volatile-lru',
-        'volatile-lfu',
-        'volatile-ttl',
-    ];
-
-    public function __construct(int $maxMemory, int $usedMemory, string $maxMemoryPolicy)
-    {
+    public function __construct(
+        int $maxMemory,
+        int $usedMemory,
+        string $maxMemoryPolicy
+    ) {
         $this->maxMemory = $maxMemory;
         $this->usedMemory = $usedMemory;
         $this->maxMemoryPolicy = $maxMemoryPolicy;

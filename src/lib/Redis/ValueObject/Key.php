@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace MateuszBieniek\IbexaDxpRedisTools\Redis;
+namespace MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject;
 
-class Key
+final class Key
 {
     /** @var string */
     private $name;

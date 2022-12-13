@@ -8,19 +8,19 @@ declare(strict_types=1);
 
 namespace MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway;
 
-use MateuszBieniek\IbexaDxpRedisTools\Redis\Info;
+use MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info;
 
 interface RedisGatewayInterface
 {
     public function getInfo(): Info;
 
     /**
-     * @return \MateuszBieniek\IbexaDxpRedisTools\Redis\Key[]
+     * @return \MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Key[]
      */
     public function getKeysWithoutExpiry(): iterable;
 
     /**
-     * @param \MateuszBieniek\IbexaDxpRedisTools\Redis\Key[] $keys
+     * @param \MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Key[] $keys
      */
     public function getMemoryUsedByKeys(array $keys): int;
 }
