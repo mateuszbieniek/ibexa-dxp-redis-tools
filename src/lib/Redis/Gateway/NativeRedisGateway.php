@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway;
 
+use MateuszBieniek\IbexaDxpRedisTools\Redis\Exception\NoDatabaseException;
 use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info;
 use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info\Memory;
 use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info\Stats;
@@ -81,7 +82,7 @@ class NativeRedisGateway implements RedisGatewayInterface
                     'SAMPLES',
                     '0'
                 );
-            } catch (\RedisException $e) {
+            } catch (NoDatabaseException $e) {
             }
         }
 

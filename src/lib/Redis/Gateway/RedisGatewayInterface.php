@@ -22,5 +22,5 @@ interface RedisGatewayInterface
     /**
      * @param \MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Key[] $keys
      */
-    public function getMemoryUsedByKeys(array $keys): int;
+    public function getMemoryUsedByKeys(iterable $keys): int;
 }
