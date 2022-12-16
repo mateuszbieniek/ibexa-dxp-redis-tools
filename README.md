@@ -7,7 +7,7 @@ Currently, a single command is available
 php bin/console ibexa:redis-check
 ```
 with additional options:
-- `--calculateMemory -m` will calculate non-evitcable memory. Keep in mind it can take several minutes on big databases.
+- `--calculateMemory -m` will calculate non-evictable memory. Keep in mind it can take several minutes on big databases.
 - `--format -f` allowed values: `text`, `json`. Determines how the command output is formatted.
 
 ## Installation
