@@ -9,8 +9,8 @@ declare(strict_types=1);
 namespace MateuszBieniek\IbexaDxpRedisToolsBundle\Command;
 
 use MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway\Factory\RedisGatewayFactoryInterface;
-use MateuszBieniek\IbexaDxpRedisTools\Renderer\JsonCliOutputCliRenderer;
-use MateuszBieniek\IbexaDxpRedisTools\Renderer\PrettyCliOutputCliRenderer;
+use MateuszBieniek\IbexaDxpRedisTools\Renderer\JsonCliRenderer;
+use MateuszBieniek\IbexaDxpRedisTools\Renderer\PrettyCliRenderer;
 use MateuszBieniek\IbexaDxpRedisTools\ValueObject\InstanceStatus;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidOptionException;
@@ -59,10 +59,10 @@ final class RedisCheckerCommand extends BaseRedisCommand
         $format = $input->getOption('format');
         switch ($format) {
             case 'text':
-                $renderer = new PrettyCliOutputCliRenderer($input, $output, $this->translator);
+                $renderer = new PrettyCliRenderer($input, $output, $this->translator);
                 break;
             case 'json':
-                $renderer = new JsonCliOutputCliRenderer($input, $output);
+                $renderer = new JsonCliRenderer($input, $output);
                 break;
             default:
                 throw new InvalidOptionException('--format option only accepts: text, json');

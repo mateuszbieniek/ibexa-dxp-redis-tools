@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class PrettyCliOutputCliRenderer extends BaseCliRenderer
+class PrettyCliRenderer extends BaseCliRenderer
 {
     /** @var \Symfony\Contracts\Translation\TranslatorInterface */
     protected $translator;
