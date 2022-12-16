@@ -6,17 +6,17 @@
  */
 declare(strict_types=1);
 
-namespace MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject;
+namespace MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis;
 
-use MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info\Memory;
-use MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info\Stats;
+use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info\Memory;
+use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info\Stats;
 
 final class Info
 {
-    /** @var \MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info\Memory */
+    /** @var \MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info\Memory */
     private $memory;
 
-    /** @var \MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info\Stats */
+    /** @var \MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info\Stats */
     private $stats;
 
     public function __construct(

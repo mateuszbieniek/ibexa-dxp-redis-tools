@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info;
+namespace MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info;
 
 final class Memory
 {
@@ -43,11 +43,6 @@ final class Memory
     public function getMaxMemoryPolicy(): string
     {
         return $this->maxMemoryPolicy;
-    }
-
-    public function isMaxMemoryPolicySupported(): bool
-    {
-        return in_array($this->getMaxMemoryPolicy(), self::SUPPORTED_MAXMEMORY_POLICIES);
     }
 
     public function getUsedMemory(): int

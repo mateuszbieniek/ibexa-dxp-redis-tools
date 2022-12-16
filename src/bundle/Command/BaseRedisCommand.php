@@ -16,22 +16,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class BaseRedisCommand extends Command
 {
-    protected const UNIT = [
-        0 => 'B',
-        1 => 'kB',
-        2 => 'MB',
-        3 => 'GB',
-        4 => 'TB',
-    ];
-
-    protected const MAXMEMORY_POLICY = [
-        'volatile-lru',
-        'volatile-lfu',
-        'volatile-ttl',
-    ];
-
-    protected const NONEVICTABLE_THRESHOLD = 50;
-
     /** @var \MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway\Factory\RedisGatewayFactoryInterface */
     private $redisGatewayFactory;
 
@@ -62,16 +46,5 @@ abstract class BaseRedisCommand extends Command
         $port = (int) $input->getArgument('port');
 
         $this->redisGateway = $this->redisGatewayFactory->getGateway($host, $port);
-    }
-
-    protected function formatBytes(float $bytes, $unitIndex = 0): string
-    {
-        if ($bytes >= 1024) {
-            ++$unitIndex;
-
-            return $this->formatBytes($bytes / 1024, $unitIndex);
-        }
-
-        return round($bytes, 2) . ' ' . self::UNIT[$unitIndex];
     }
 }

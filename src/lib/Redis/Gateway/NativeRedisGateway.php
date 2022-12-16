@@ -8,10 +8,10 @@ declare(strict_types=1);
 
 namespace MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway;
 
-use MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info;
-use MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info\Memory;
-use MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info\Stats;
-use MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Key;
+use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info;
+use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info\Memory;
+use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info\Stats;
+use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Key;
 
 class NativeRedisGateway implements RedisGatewayInterface
 {
@@ -43,6 +43,7 @@ class NativeRedisGateway implements RedisGatewayInterface
             ),
             new Stats(
                 (int) $infoData['uptime_in_days'],
+                (int) $infoData['uptime_in_seconds'],
                 (int) $keyspace['keys'],
                 (int) $keyspace['expires'],
                 (int) $infoData['expired_keys'],

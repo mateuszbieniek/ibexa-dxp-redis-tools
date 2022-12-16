@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject;
+namespace MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis;
 
 final class Key
 {

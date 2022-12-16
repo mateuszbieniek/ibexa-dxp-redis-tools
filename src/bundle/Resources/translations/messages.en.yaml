@@ -1,0 +1,14 @@
+title: Ibexa's Redis Checker
+error:
+    maxmemory_policy: "maxmemory_policy is set to {policy}. Please change to one of the following: {supported_policies}."
+warning:
+    maxmemory_not_set: "maxmemory is not set."
+    non-evictable_memory_threshold: "Non-evictable memory takes {non-evictable_memory}% which is more than set threshold ({non-evictable_memory_threshold}%). Consider increasing the maxmemory setting."
+    non-evictable_keys_threshold: "Non-evictable keys are {non-evictable_keys}% of all keys, which is more than set threshold ({non-evictable_keys_threshold}%). Consider checking non-evictable memory (run this command with -m option)."
+info:
+    memory: "Max memory: {max_memory} | Used memory: {used_memory} | Non-evictable memory: {non-evictable_memory}"
+    keys: "All keys: {all_keys} | Non-evictable keys: {non-evictable_keys} | Evicted keys: {evicted_keys}"
+note:
+    uptime: "Your Redis instance is running for {uptime} day(s). It is recommended to run Redis for {min_uptime} days before starting this tool."
+    no_evicted_keys: "Your Redis instance is running for {uptime} day(s) and did not evict a single key. Probably, the memory allocated can be used somewhere else."
+    eviction_percentage_threshold: "Your Redis instance is evicting {eviction_percentage}% of all stored keys per day. Probably, you want to increase maxmemory setting."

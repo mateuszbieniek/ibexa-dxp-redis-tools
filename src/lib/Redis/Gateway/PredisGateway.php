@@ -8,19 +8,10 @@ declare(strict_types=1);
 
 namespace MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway;
 
-use MateuszBieniek\IbexaDxpRedisTools\Redis\Info;
-use Predis\Client;
+use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info;
 
 class PredisGateway implements RedisGatewayInterface
 {
-    /** @var \Predis\Client */
-    private $client;
-
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
-
     public function getInfo(): Info
     {
         // TODO: Implement getInfo() method.

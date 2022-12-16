@@ -6,12 +6,15 @@
  */
 declare(strict_types=1);
 
-namespace MateuszBieniek\IbexaDxpRedisTools\Redis\ValueObject\Info;
+namespace MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info;
 
 final class Stats
 {
     /** @var int */
     private $uptime;
+
+    /** @var int */
+    private $uptimeInSeconds;
 
     /** @var int */
     private $expiredKeys;
@@ -27,12 +30,14 @@ final class Stats
 
     public function __construct(
         int $uptime,
+        int $uptimeInSeconds,
         int $allKeys,
         int $expiringKeys,
         int $expiredKeys,
         int $evictedKeys
     ) {
         $this->uptime = $uptime;
+        $this->uptimeInSeconds = $uptimeInSeconds;
         $this->allKeys = $allKeys;
         $this->expiringKeys = $expiringKeys;
         $this->expiredKeys = $expiredKeys;
@@ -62,5 +67,10 @@ final class Stats
     public function getEvictedKeysNumber(): int
     {
         return $this->evictedKeys;
+    }
+
+    public function getUptimeInSeconds(): int
+    {
+        return $this->uptimeInSeconds;
     }
 }
