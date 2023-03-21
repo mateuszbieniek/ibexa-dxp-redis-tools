@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace MateuszBieniek\IbexaDxpRedisToolsBundle\Command;
 
 use MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway\Factory\RedisGatewayFactoryInterface;
+use MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway\RedisGatewayInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -16,11 +17,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class BaseRedisCommand extends Command
 {
-    /** @var \MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway\Factory\RedisGatewayFactoryInterface */
-    private $redisGatewayFactory;
+    private RedisGatewayFactoryInterface $redisGatewayFactory;
 
-    /** @var \MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway\RedisGatewayInterface */
-    protected $redisGateway;
+    protected RedisGatewayInterface $redisGateway;
 
     public function __construct(RedisGatewayFactoryInterface $redisGatewayFactory)
     {

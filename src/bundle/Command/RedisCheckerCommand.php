@@ -23,8 +23,7 @@ final class RedisCheckerCommand extends BaseRedisCommand
 {
     protected static $defaultName = 'ibexa:redis-check';
 
-    /** @var \Symfony\Contracts\Translation\TranslatorInterface */
-    private $translator;
+    private TranslatorInterface $translator;
 
     public function __construct(RedisGatewayFactoryInterface $redisGatewayFactory, TranslatorInterface $translator)
     {

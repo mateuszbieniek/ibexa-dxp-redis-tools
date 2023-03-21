@@ -17,8 +17,7 @@ use Predis\Client;
 
 class PredisGateway implements RedisGatewayInterface
 {
-    /** @var \Predis\Client */
-    private $client;
+    private Client $client;
 
     public function __construct(Client $client)
     {

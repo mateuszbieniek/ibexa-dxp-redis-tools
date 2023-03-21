@@ -13,11 +13,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class BaseCliRenderer implements InstanceStatusRendererInterface
 {
-    /** @var \Symfony\Component\Console\Input\InputInterface */
-    protected $input;
+    protected InputInterface $input;
 
-    /** @var \Symfony\Component\Console\Output\OutputInterface */
-    protected $output;
+    protected OutputInterface $output;
 
     public function __construct(InputInterface $input, OutputInterface $output)
     {

@@ -16,8 +16,7 @@ use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Key;
 
 class NativeRedisGateway implements RedisGatewayInterface
 {
-    /** @var \Redis */
-    private $client;
+    private \Redis $client;
 
     public function __construct(\Redis $client)
     {

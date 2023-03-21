@@ -17,8 +17,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PrettyCliRenderer extends BaseCliRenderer
 {
-    /** @var \Symfony\Contracts\Translation\TranslatorInterface */
-    protected $translator;
+    protected TranslatorInterface $translator;
 
     public function __construct(InputInterface $input, OutputInterface $output, TranslatorInterface $translator)
     {
