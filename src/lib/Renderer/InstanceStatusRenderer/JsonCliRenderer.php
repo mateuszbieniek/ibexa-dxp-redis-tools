@@ -6,8 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace MateuszBieniek\IbexaDxpRedisTools\Renderer;
+namespace MateuszBieniek\IbexaDxpRedisTools\Renderer\InstanceStatusRenderer;
 
+use MateuszBieniek\IbexaDxpRedisTools\Renderer\BaseCliRenderer;
 use MateuszBieniek\IbexaDxpRedisTools\ValueObject\InstanceStatus;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;

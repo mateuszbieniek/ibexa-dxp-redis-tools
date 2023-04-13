@@ -8,6 +8,10 @@ services:
         tags:
             - { name: console.command }
 
+    MateuszBieniek\IbexaDxpRedisToolsBundle\Command\RedisContentCheckerCommand:
+        tags:
+            - { name: console.command }
+
     MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway\Factory\RedisGatewayFactory: ~
 
     MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway\Factory\RedisGatewayFactoryInterface: '@MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway\Factory\RedisGatewayFactory'

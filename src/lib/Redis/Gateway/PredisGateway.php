@@ -74,4 +74,20 @@ class PredisGateway implements RedisGatewayInterface
 
         return $memory;
     }
+
+    public function getMembers(Key $set): iterable
+    {
+        foreach ($this->client->smembers($set->getName()) as $keyName) {
+            yield new Key($keyName, $this->client->ttl($keyName));
+        }
+    }
+
+    public function keyExists(Key $key): bool
+    {
+        if ($this->client->exists($key->getName())) {
+            return true;
+        }
+
+        return false;
+    }
 }

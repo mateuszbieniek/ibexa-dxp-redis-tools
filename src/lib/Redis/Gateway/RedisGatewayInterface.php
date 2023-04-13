@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace MateuszBieniek\IbexaDxpRedisTools\Redis\Gateway;
 
 use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Info;
+use MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Key;
 
 interface RedisGatewayInterface
 {
@@ -23,4 +24,8 @@ interface RedisGatewayInterface
      * @param \MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Key[] $keys
      */
     public function getMemoryUsedByKeys(iterable $keys): int;
+
+    public function getMembers(Key $set): iterable;
+
+    public function keyExists(Key $key): bool;
 }
