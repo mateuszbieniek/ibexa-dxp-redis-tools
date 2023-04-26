@@ -38,7 +38,7 @@ class RedisContentCheckerCommand extends BaseRedisCommand
             /** @var \MateuszBieniek\IbexaDxpRedisTools\ValueObject\Redis\Key $key */
             foreach ($members as $key) {
                 if (!$this->redisGateway->keyExists($key)) {
-                    $orphanedMembers[$keyWithoutExpiry->getName()][] = $key->getName();
+                    $orphanedMembers[$key->getName()][] = $keyWithoutExpiry->getName();
                 }
             }
         }
@@ -53,13 +53,6 @@ class RedisContentCheckerCommand extends BaseRedisCommand
             $output->writeln('Done!');
         } else {
             $this->render($output, $orphanedMembers);
-            foreach ($orphanedMembers as $orphanedMember => $removedKeys) {
-                $output->writeln($orphanedMember);
-                foreach ($removedKeys as $removedKey) {
-                    $output->writeln(' - ' . $removedKey);
-                }
-                $output->writeln('');
-            }
         }
 
         return Command::SUCCESS;
@@ -71,7 +64,7 @@ class RedisContentCheckerCommand extends BaseRedisCommand
         foreach ($data as $orphanedMember => $removedKeys) {
             $output->writeln($orphanedMember);
             foreach ($removedKeys as $removedKey) {
-                $output->writeln(' - ' . $removedKey);
+                $output->writeln(' - ' . str_replace('u0000', 'x00', json_encode($removedKey)));
             }
             $output->writeln('');
         }
